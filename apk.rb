@@ -267,9 +267,9 @@ class Msf::Payload::Apk
         raise RuntimeError, "apksigner not found. If it's not in your PATH, please add it."
       end
 
-      mv = run_cmd(['mv'])
-      unless mv != nil
-        raise RuntimeError, "mv not found. If it's not in your PATH, please add it."
+      zipalign = run_cmd(['zipalign'])
+      unless zipalign != nil
+        raise RuntimeError, "zipalign not found. If it's not in your PATH, please add it."
       end
 
       keystore = "#{tempdir}/signing.keystore"
@@ -392,11 +392,11 @@ class Msf::Payload::Apk
 
     if signature
       print_status "Aligning #{injected_apk}\n"
-      mv_output = run_cmd(['mv', njected_apk, aligned_apk])
+      zipalign_output = run_cmd(['zipalign', '-p', '4', injected_apk, aligned_apk])
 
       unless File.readable?(aligned_apk)
-        print_error(mv_output)
-        raise RuntimeError, 'Unable to align apk with mv.'
+        print_error(zipalign_output)
+        raise RuntimeError, 'Unable to align apk with zipalign.'
       end
 
       print_status "Signing #{aligned_apk} with apksigner\n"
