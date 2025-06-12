@@ -395,8 +395,8 @@ class Msf::Payload::Apk
       mv_output = run_cmd(['mv', njected_apk, aligned_apk])
 
       unless File.readable?(aligned_apk)
-        print_error(zipalign_output)
-        raise RuntimeError, 'Unable to align apk with zipalign.'
+        print_error(mv_output)
+        raise RuntimeError, 'Unable to align apk with mv.'
       end
 
       print_status "Signing #{aligned_apk} with apksigner\n"
