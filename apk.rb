@@ -1,4 +1,4 @@
--- coding: binary --
+# -*- coding: binary -*-
 
 require 'rex/text' require 'tmpdir' require 'nokogiri' require 'fileutils' require 'optparse' require 'open3' require 'date'
 
