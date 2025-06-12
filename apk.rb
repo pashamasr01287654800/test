@@ -268,8 +268,8 @@ class Msf::Payload::Apk
       end
 
       mv = run_cmd(['mv'])
-      unless zipalign != nil
-        raise RuntimeError, "zipalign not found. If it's not in your PATH, please add it."
+      unless mv != nil
+        raise RuntimeError, "mv not found. If it's not in your PATH, please add it."
       end
 
       keystore = "#{tempdir}/signing.keystore"
